@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Menu – Products (Light)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand-orange:       #E8500A;
+    --brand-orange-light: #FF6B2B;
+    --brand-orange-bg:    #FFF3EE;
+    --col-border:         #E4E7EB;
+    --l1-color:           #1A1A1A;
+    --l2-color:           #374151;
+    --l3-color:           #6B7280;
+    --l4-color:           #E8500A;
+    --hover-l3:           #1A1A1A;
+    --bg-menu:            #FFFFFF;
+    --bg-col-alt:         #F9FAFB;
+    --header-bg:          #E8500A;
+    --divider:            #E4E7EB;
+    --footer-bg:          #F3F4F6;
+    --font-heading:       'Barlow Condensed', sans-serif;
+    --font-body:          'Barlow', sans-serif;
+  }
+
+  body {
+    background: #E9EAEC;
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  .page-label {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: var(--font-heading);
+  }
+
+  /* ─── NAV BAR ─────────────────────────────────── */
+  .navbar {
+    width: 100%;
+    max-width: 1400px;
+    background: #FFFFFF;
+    border-bottom: 3px solid var(--brand-orange);
+    display: flex;
+    align-items: stretch;
+    height: 54px;
+    position: relative;
+    z-index: 10;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .nav-logo {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #E4E7EB;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 20px;
+    color: #1A1A1A;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .nav-logo span { color: var(--brand-orange); }
+
+  .nav-items {
+    display: flex;
+    align-items: stretch;
+    padding: 0 8px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #6B7280;
+    cursor: pointer;
+    transition: color 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    white-space: nowrap;
+  }
+  .nav-item:hover { color: #1A1A1A; }
+  .nav-item.active {
+    color: #1A1A1A;
+    border-bottom-color: var(--brand-orange);
+    background: rgba(232,80,10,0.04);
+  }
+  .nav-item svg {
+    width: 10px; height: 10px;
+    fill: #9CA3AF;
+    margin-left: 5px;
+    transition: fill 0.2s;
+  }
+  .nav-item.active svg { fill: var(--brand-orange); }
+
+  /* ─── MEGA MENU PANEL ─────────────────────────── */
+  .mega-panel {
+    width: 100%;
+    max-width: 1400px;
+    background: var(--bg-menu);
+    border: 1px solid var(--col-border);
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+  }
+
+  /* orange header strip */
+  .mega-panel-header {
+    background: var(--header-bg);
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mega-panel-header-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .mega-panel-header-sep {
+    width: 1px; height: 14px;
+    background: rgba(255,255,255,0.35);
+  }
+  .mega-panel-header-sub {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: 0.3px;
+  }
+
+  /* columns grid */
+  .mega-cols {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    min-height: 480px;
+  }
+
+  .mega-col {
+    padding: 20px 18px 24px;
+    border-right: 1px solid var(--col-border);
+    position: relative;
+    background: var(--bg-menu);
+  }
+  .mega-col:last-child { border-right: none; }
+  .mega-col:nth-child(even) { background: var(--bg-col-alt); }
+
+  /* continuation badge */
+  .col-cont-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--brand-orange-bg);
+    border: 1px solid rgba(232,80,10,0.25);
+    border-radius: 3px;
+    padding: 2px 8px;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--brand-orange);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .col-cont-badge svg {
+    width: 8px; height: 8px; fill: var(--brand-orange);
+  }
+
+  /* ─── MENU ITEM TYPES ──────────────────────────── */
+
+  /* L1 – column heading */
+  .l1 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--l1-color);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 0 7px;
+    border-bottom: 2px solid var(--brand-orange);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .l1::before {
+    content: '';
+    width: 4px;
+    height: 16px;
+    background: var(--brand-orange);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .l1:hover { color: var(--brand-orange); }
+
+  /* divider between two L1 blocks in same column */
+  .l1-spacer {
+    height: 20px;
+    border-top: 1px solid var(--divider);
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  /* L2 – section heading */
+  .l2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--l2-color);
+    padding: 8px 0 3px;
+    margin-top: 4px;
+    cursor: pointer;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .l2::before {
+    content: '▸';
+    font-size: 9px;
+    color: var(--brand-orange);
+    flex-shrink: 0;
+  }
+  .l2:hover { color: #1A1A1A; }
+
+  /* L3 – regular item */
+  .l3 {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--l3-color);
+    padding: 3px 0 3px 13px;
+    line-height: 1.4;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    transition: color 0.15s, padding-left 0.15s, border-left-color 0.15s;
+    border-left: 1px solid transparent;
+  }
+  .l3::before {
+    content: '·';
+    color: #D1D5DB;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+  .l3:hover {
+    color: var(--hover-l3);
+    padding-left: 16px;
+    border-left-color: var(--brand-orange);
+  }
+
+  /* L4 – deep nested */
+  .l4 {
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--l4-color);
+    padding: 2px 0 2px 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.15s;
+    opacity: 0.8;
+  }
+  .l4::before {
+    content: '›';
+    font-size: 13px;
+    color: var(--brand-orange);
+    flex-shrink: 0;
+  }
+  .l4:hover { color: var(--brand-orange-light); opacity: 1; }
+
+  /* ─── FOOTER ───────────────────────────────────── */
+  .mega-footer {
+    background: var(--footer-bg);
+    border-top: 1px solid var(--col-border);
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .mega-footer-link {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #9CA3AF;
+    cursor: pointer;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .mega-footer-link::after { content: '→'; font-size: 13px; }
+  .mega-footer-link:hover { color: var(--brand-orange); }
+  .mega-footer-dot { width: 3px; height: 3px; background: #D1D5DB; border-radius: 50%; }
+
+  /* ─── LEGEND ───────────────────────────────────── */
+  .legend {
+    width: 100%;
+    max-width: 1400px;
+    margin-top: 28px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #E4E7EB;
+    border-radius: 4px;
+    padding: 8px 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .legend-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 800;
+  }
+  .legend-label { font-size: 12px; color: #9CA3AF; font-family: var(--font-body); }
+  .legend-label strong { color: #374151; display: block; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<p class="page-label">Mega Menu — Visual Layout Preview (Light)</p>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-logo">CONTAINER<span>PRO</span></div>
+  <div class="nav-items">
+    <div class="nav-item active">Products <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg></div>
+    <div class="nav-item">Services</div>
+    <div class="nav-item">Projects</div>
+    <div class="nav-item">About</div>
+    <div class="nav-item">Contact</div>
+  </div>
+</nav>
+
+<!-- Mega Panel -->
+<div class="mega-panel">
+  <div class="mega-panel-header">
+    <div class="mega-panel-header-title">Products</div>
+    <div class="mega-panel-header-sep"></div>
+    <div class="mega-panel-header-sub">Browse our full range of containers, storage solutions and accessories</div>
+  </div>
+
+  <div class="mega-cols">
+
+    <!-- COL 1: SHIPPING CONTAINERS -->
+    <div class="mega-col">
+      <div class="l1">Shipping Containers</div>
+      <div class="l2">Standard Dry Containers</div>
+      <div class="l3">New 10ft ISO</div>
+      <div class="l3">New 20ft ISO</div>
+      <div class="l3">New 40ft ISO</div>
+      <div class="l3">Used Grade A</div>
+      <div class="l3">Used Grade B</div>
+      <div class="l3">Used Grade C</div>
+      <div class="l2">High Cube Containers</div>
+      <div class="l3">40ft High Cube</div>
+      <div class="l3">45ft High Cube</div>
+      <div class="l2">Specialised Dry Containers</div>
+      <div class="l3">Open Top</div>
+      <div class="l3">Flat Rack / Platform</div>
+      <div class="l3">Side-Opening</div>
+      <div class="l3">Double-Door (Tunnel)</div>
+      <div class="l3">Pallet-Wide</div>
+      <div class="l2">Reefer / Refrigerated</div>
+      <div class="l3">New Reefer for Sale</div>
+      <div class="l3">Used Reefer for Sale</div>
+      <div class="l3">Operational Reefer Units</div>
+      <div class="l3">Non-Operational Reefer</div>
+      <div class="l3">Genset-Powered Solutions</div>
+      <div class="l3">Temperature-Controlled Storage</div>
+      <div class="l4">Pharmaceutical</div>
+      <div class="l4">Food & Beverage</div>
+      <div class="l4">Floriculture</div>
+      <div class="l2">Tank Containers (Tanktainers)</div>
+      <div class="l3">ISO Tanks for Sale</div>
+      <div class="l3">ISO Tanks for Hire</div>
+      <div class="l3">Tanks for Water</div>
+      <div class="l3">Tanks for Chemical</div>
+      <div class="l3">Tanks for Fuel</div>
+      <div class="l3">Food-Grade Liquid Tanks</div>
+    </div>
+
+    <!-- COL 2: MODIFIED & SPECIALISED -->
+    <div class="mega-col">
+      <div class="l1">Modified & Specialised Containers</div>
+      <div class="l2">Container Offices</div>
+      <div class="l3">Single-Room Offices</div>
+      <div class="l3">Multi-Room Offices</div>
+      <div class="l3">Site Office Containers</div>
+      <div class="l3">Office Hire for Construction Sites</div>
+      <div class="l2">Container Homes & Housing</div>
+      <div class="l3">Single-Unit Homes</div>
+      <div class="l3">Multi-Unit / Stacked Homes</div>
+      <div class="l3">Container Guest Houses</div>
+      <div class="l3">Rental Housing Units</div>
+      <div class="l2">Container Cabins (Anti-Vandal)</div>
+      <div class="l3">Standard Anti-Vandal</div>
+      <div class="l3">Security Guard Cabins</div>
+      <div class="l3">Site Welfare Units</div>
+      <div class="l2">Container Stalls / Retail Kiosks</div>
+      <div class="l3">Standard Stalls</div>
+      <div class="l3">Pop-Up Retail Shops</div>
+      <div class="l3">Pop-Up Bars & Restaurants</div>
+      <div class="l3">Market Kiosks</div>
+      <div class="l2">Ablution / Sanitation Containers</div>
+      <div class="l3">Toilet & Shower Containers</div>
+      <div class="l3">Portable Ablution Blocks</div>
+      <div class="l3">Site Sanitation Units</div>
+    </div>
+
+    <!-- COL 3: MODIFIED (cont.) -->
+    <div class="mega-col">
+      <div class="col-cont-badge">
+        <svg viewBox="0 0 8 8"><path d="M0 0h8v8H0z" opacity="0"/><path d="M4 0l4 4-4 4V5H0V3h4z"/></svg>
+        Modified (cont.)
+      </div>
+      <div class="l1">Canteen & Kitchen Containers</div>
+      <div class="l3">Site Canteen Containers</div>
+      <div class="l3">Commercial Kitchen Containers</div>
+      <div class="l1" style="margin-top:14px;">Clinic & Medical Containers</div>
+      <div class="l3">Mobile Clinic Units</div>
+      <div class="l3">First Aid & Medical Containers</div>
+      <div class="l1" style="margin-top:14px;">Classroom & Training Containers</div>
+      <div class="l3">Portable Classroom Units</div>
+      <div class="l3">Training Room Containers</div>
+      <div class="l3">Library Containers</div>
+      <div class="l1" style="margin-top:14px;">Industrial & Utility Containers</div>
+      <div class="l3">Generator Housing</div>
+      <div class="l3">Workshop & Equipment Store</div>
+      <div class="l3">Electrical Substation Containers</div>
+      <div class="l1" style="margin-top:14px;">Leisure & Lifestyle Containers</div>
+      <div class="l3">Container Swimming Pools</div>
+      <div class="l3">Container Gyms</div>
+      <div class="l3">Container Studios</div>
+      <div class="l1" style="margin-top:14px;">Custom Bespoke Fabrications</div>
+      <div class="l3">Custom Design to Client Specs</div>
+      <div class="l3">Multi-Level / Stacked Structures</div>
+      <div class="l3">Container Complex Developments</div>
+    </div>
+
+    <!-- COL 4: SELF-STORAGE + CONTAINER SIZES -->
+    <div class="mega-col">
+      <div class="l1">Self-Storage Solutions</div>
+      <div class="l2">Personal & Household</div>
+      <div class="l3">Self-Storage Units</div>
+      <div class="l2">Business & Commercial</div>
+      <div class="l3">Business Self-Storage</div>
+      <div class="l2">Document & Archive Storage</div>
+      <div class="l3">Archive Units</div>
+      <div class="l2">Seasonal Storage</div>
+      <div class="l3">Furniture Storage</div>
+      <div class="l3">Equipment Storage</div>
+      <div class="l2">Secure 24/7 Access</div>
+      <div class="l3">24/7 Access Storage Facilities</div>
+      <div class="l2">Climate-Controlled</div>
+      <div class="l3">Climate-Controlled Storage Options</div>
+
+      <div class="l1-spacer"></div>
+
+      <div class="l1">Container Sizes Guide</div>
+      <div class="l3">10ft Containers</div>
+      <div class="l3">20ft Containers</div>
+      <div class="l3">40ft Containers</div>
+      <div class="l3">40ft High Cube Containers</div>
+      <div class="l3">45ft Containers</div>
+      <div class="l3">Custom Sizes Available</div>
+    </div>
+
+    <!-- COL 5: PARTS & ACCESSORIES -->
+    <div class="mega-col">
+      <div class="l1">Container Parts & Accessories</div>
+      <div class="l2">Doors & Entry Hardware</div>
+      <div class="l3">Doors (Single Leaf)</div>
+      <div class="l3">Doors (Double Leaf)</div>
+      <div class="l3">Locking Bars & Security Hardware</div>
+      <div class="l3">Rubber Door Seals & Gaskets</div>
+      <div class="l2">Structural Components</div>
+      <div class="l3">Corner Castings & Twist Locks</div>
+      <div class="l3">Wall & Roof Panels</div>
+      <div class="l3">Roof Hatches & Skylights</div>
+      <div class="l2">Flooring</div>
+      <div class="l3">Bamboo Flooring</div>
+      <div class="l3">Hardwood Flooring</div>
+      <div class="l3">Steel Flooring</div>
+      <div class="l2">Ventilation & Climate</div>
+      <div class="l3">Ventilation Grilles & Louvres</div>
+      <div class="l3">Insulation Panels</div>
+      <div class="l2">Storage & Access</div>
+      <div class="l3">Shelving & Racking Systems</div>
+      <div class="l3">Steps & Access Ramps</div>
+      <div class="l2">Security Accessories</div>
+      <div class="l3">Padlocks & Security Lockboxes</div>
+      <div class="l3">Anti-Tamper Bolt-On Lock Boxes</div>
+    </div>
+
+  </div><!-- /.mega-cols -->
+
+  <div class="mega-footer">
+    <div class="mega-footer-link">View All Products</div>
+    <div class="mega-footer-dot"></div>
+    <div class="mega-footer-link">Request a Quote</div>
+    <div class="mega-footer-dot"></div>
+    <div class="mega-footer-link">Download Catalogue</div>
+  </div>
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:#E8500A;color:#fff;font-size:8px;letter-spacing:1px;">L1</div>
+    <div class="legend-label"><strong>Level 1 — Column Heading</strong>Uppercase, near-black, orange underline + left bar</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:#F3F4F6;color:#374151;font-size:8px;letter-spacing:1px;">L2</div>
+    <div class="legend-label"><strong>Level 2 — Section Heading</strong>Condensed, dark grey, orange ▸ prefix</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:#F9FAFB;color:#6B7280;font-size:8px;letter-spacing:1px;">L3</div>
+    <div class="legend-label"><strong>Level 3 — Regular Item</strong>Body font, medium grey, indent + dot bullet</div>
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:#FFF3EE;color:#E8500A;font-size:10px;">L4</div>
+    <div class="legend-label"><strong>Level 4 — Deep Nested</strong>Orange, deeper indent, › prefix</div>
+  </div>
+</div>
+
+</body>
+</html>

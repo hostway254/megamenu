@@ -1,0 +1,74 @@
+/* ═══════════════════════════════════════════
+   IDEAL MEGA MENU – Admin Styles
+   ═══════════════════════════════════════════ */
+
+.imm-admin-wrap {
+    max-width: 900px;
+}
+
+/* ─── Tab content ─── */
+.imm-tab-content {
+    display: none;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-top: none;
+    padding: 20px 25px;
+}
+
+.imm-tab-content.imm-tab-active {
+    display: block;
+}
+
+/* ─── Toggle switch ─── */
+.imm-toggle {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    vertical-align: middle;
+}
+
+.imm-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.imm-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #ccc;
+    border-radius: 26px;
+    transition: 0.3s;
+}
+
+.imm-toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.imm-toggle input:checked + .imm-toggle-slider {
+    background: #0073aa;
+}
+
+.imm-toggle input:checked + .imm-toggle-slider::before {
+    transform: translateX(22px);
+}
+
+/* ─── Items table ─── */
+.imm-items-table {
+    max-width: 600px;
+}
+
+.imm-items-table th,
+.imm-items-table td {
+    padding: 10px 12px;
+}
